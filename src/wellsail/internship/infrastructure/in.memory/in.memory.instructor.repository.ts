@@ -1,4 +1,4 @@
-import { Instructor } from '../../domain/model/instructor';
+import { Instructor } from '../../domain/model/instructor/instructor';
 import { Identity } from '../../domain/model/instructor/identity';
 import { InstructorRepository } from '../../domain/ports/instructor.repository';
 import { Email } from '../../domain/vo/email';
