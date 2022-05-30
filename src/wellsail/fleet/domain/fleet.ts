@@ -1,11 +1,13 @@
 import { EmptyFleet } from './exception/empty.fleet';
 import { FleetNotEmpty } from './specs/fleet.not.empty';
+import {RentalCosts} from "./rental.costs";
 
 export class Fleet {
   constructor(
     private id: string,
     private boatsQty: number,
     private title: string,
+    private rentalCosts: RentalCosts = null,
   ) {
     this.checkFleetNotEmpty();
   }
@@ -21,6 +23,10 @@ export class Fleet {
     this.boatsQty = boatsQty;
     this.checkFleetNotEmpty();
     this.title = title;
+  }
+
+  defineRentalCosts(rentalCosts: RentalCosts) {
+    this.rentalCosts = rentalCosts;
   }
 
   getId(): string {
