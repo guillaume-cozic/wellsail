@@ -1,4 +1,4 @@
-import { Event } from '../../../domain/planning/event';
+import { SimpleEvent } from '../../../domain/planning/simple.event';
 import { DateInterval } from '../../../../internship/domain/vo/date.interval';
 import { InMemoryEventRepository } from '../../../infrastructure/in.memory/in.memory.event.repository';
 import { AssignEvent } from './assign.event';
@@ -59,13 +59,13 @@ describe('assign an event to workers', () => {
     );
     await assignEvent.execute(request);
 
-    const eventSaved: Event = await eventRepository.get(eventId);
-    const eventExpected: Event = new Event(
+    const eventSaved: SimpleEvent = await eventRepository.get(eventId);
+    const eventExpected: SimpleEvent = new SimpleEvent(
       eventId,
       dateInterval,
       'title',
       workersId,
-      Event.INTERNSHIP,
+      SimpleEvent.INTERNSHIP,
     );
     expect(eventSaved).toEqual(eventExpected);
   });
@@ -80,13 +80,13 @@ describe('assign an event to workers', () => {
     );
     await assignEvent.execute(request);
 
-    const eventSaved: Event = await eventRepository.get(eventId);
-    const eventExpected: Event = new Event(
+    const eventSaved: SimpleEvent = await eventRepository.get(eventId);
+    const eventExpected: SimpleEvent = new SimpleEvent(
       eventId,
       dateInterval,
       'title',
       workersId,
-      Event.PERMANENCE,
+      SimpleEvent.PERMANENCE,
     );
     expect(eventSaved).toEqual(eventExpected);
   });
@@ -111,12 +111,12 @@ describe('assign an event to workers', () => {
     const start: number = Date.now() + 100;
     const end: number = Date.now() + 86400;
     const dateInterval: DateInterval = new DateInterval(start, end);
-    const event: Event = new Event(
+    const event: SimpleEvent = new SimpleEvent(
       eventId,
       dateInterval,
       'title',
       [],
-      Event.INTERNSHIP,
+      SimpleEvent.INTERNSHIP,
     );
     await eventRepository.save(event);
     return dateInterval;
@@ -126,12 +126,12 @@ describe('assign an event to workers', () => {
     const start: number = Date.now() + 100;
     const end: number = Date.now() + 86400;
     const dateInterval: DateInterval = new DateInterval(start, end);
-    const event: Event = new Event(
+    const event: SimpleEvent = new SimpleEvent(
       eventId,
       dateInterval,
       'title',
       [],
-      Event.PERMANENCE,
+      SimpleEvent.PERMANENCE,
     );
     await eventRepository.save(event);
     return dateInterval;

@@ -2,7 +2,7 @@ import { DateInterval } from '../../../internship/domain/vo/date.interval';
 import { Worker } from './worker';
 import { WorkerNotSkilled } from './exception/worker.not.skilled';
 
-export class Event {
+export class SimpleEvent {
   public static INTERNSHIP = 'INTERNSHIP';
   public static PERMANENCE = 'PERMANENCE';
 

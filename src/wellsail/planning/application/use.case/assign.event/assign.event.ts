@@ -1,4 +1,4 @@
-import { Event } from '../../../domain/planning/event';
+import { SimpleEvent } from '../../../domain/planning/simple.event';
 import { EventNotFound } from '../../../domain/planning/exception/event.not.found';
 import { EventRepository } from '../../../domain/planning/event.repository';
 import { AssignEventRequest } from './assign.event.request';
@@ -13,7 +13,7 @@ export class AssignEvent {
   ) {}
 
   async execute(request: AssignEventRequest) {
-    const event: Event = await this.eventRepository.get(request.getEventId());
+    const event: SimpleEvent = await this.eventRepository.get(request.getEventId());
     if (event === undefined) {
       throw new EventNotFound();
     }

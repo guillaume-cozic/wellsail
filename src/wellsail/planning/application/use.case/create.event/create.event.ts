@@ -1,5 +1,5 @@
 import { EventRepository } from '../../../domain/planning/event.repository';
-import { Event } from '../../../domain/planning/event';
+import { SimpleEvent } from '../../../domain/planning/simple.event';
 import { DateInterval } from '../../../../internship/domain/vo/date.interval';
 import { CreateEventRequest } from './create.event.request';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,7 +14,7 @@ export class CreateEvent {
     );
 
     const id: string = uuidv4();
-    const event: Event = new Event(
+    const event: SimpleEvent = new SimpleEvent(
       id,
       dateInterval,
       request.getTitle(),

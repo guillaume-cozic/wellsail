@@ -1,7 +1,7 @@
 import { InMemoryEventRepository } from '../../../infrastructure/in.memory/in.memory.event.repository';
 import { EventNotFound } from '../../../domain/planning/exception/event.not.found';
 import { DateInterval } from '../../../../internship/domain/vo/date.interval';
-import { Event } from '../../../domain/planning/event';
+import { SimpleEvent } from '../../../domain/planning/simple.event';
 import { DeleteEventLinked } from './delete.event.linked';
 import { DeleteEventLinkedRequest } from './delete.event.linked.request';
 import { v4 as uuidv4 } from 'uuid';
@@ -48,14 +48,14 @@ describe('delete an linked event', () => {
       const start: number = Date.now() + 100 + 86400 * i;
       const end: number = Date.now() + 200 + 86400 * i;
       const dateInterval: DateInterval = new DateInterval(start, end);
-      const events: Array<Event> = [];
+      const events: Array<SimpleEvent> = [];
       events.push(
-        new Event(
+        new SimpleEvent(
           uuidv4(),
           dateInterval,
           'title',
           [],
-          Event.INTERNSHIP,
+          SimpleEvent.INTERNSHIP,
           parentEventId,
         ),
       );
