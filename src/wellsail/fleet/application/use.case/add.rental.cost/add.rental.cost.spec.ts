@@ -3,7 +3,7 @@ import { AddRentalCost } from './add.rental.cost';
 import { AddRentalCostRequest } from './add.rental.cost.request';
 import { FleetNotFound } from '../../../domain/exception/fleet.not.found';
 import { Fleet } from '../../../domain/fleet';
-import { RentalCostInvalid } from '../../../domain/exception/RentalCostInvalid';
+import { RentalCostInvalid } from '../../../domain/exception/rental.cost.invalid';
 import { RentalCosts } from '../../../domain/rental.costs';
 
 describe('add a rental cost to a fleet', () => {

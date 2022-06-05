@@ -3,7 +3,7 @@ import { DeleteEvent } from './delete.event';
 import { EventNotFound } from '../../../domain/planning/exception/event.not.found';
 import { DeleteEventRequest } from './delete.event.request';
 import { DateInterval } from '../../../../internship/domain/vo/date.interval';
-import { Event } from '../../../domain/planning/event';
+import { SimpleEvent } from '../../../domain/planning/simple.event';
 
 describe('delete an event', () => {
   const eventId = 'eventId';
@@ -33,7 +33,7 @@ describe('delete an event', () => {
     const request: DeleteEventRequest = new DeleteEventRequest(eventId);
 
     await deleteEvent.execute(request);
-    const eventDeleted: Event = await eventRepository.get(eventId);
+    const eventDeleted: SimpleEvent = await eventRepository.get(eventId);
     expect(eventDeleted).toBeUndefined();
   });
 
@@ -41,12 +41,12 @@ describe('delete an event', () => {
     const start: number = Date.now() + 100;
     const end: number = Date.now() + 86400;
     const dateInterval: DateInterval = new DateInterval(start, end);
-    const event: Event = new Event(
+    const event: SimpleEvent = new SimpleEvent(
       eventId,
       dateInterval,
       'title',
       [],
-      Event.INTERNSHIP,
+      SimpleEvent.INTERNSHIP,
     );
     await eventRepository.save(event);
   }

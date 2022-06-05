@@ -1,25 +1,27 @@
-import { Event } from '../../domain/planning/event';
+import { SimpleEvent } from '../../domain/planning/simple.event';
 import { EventRepository } from '../../domain/planning/event.repository';
 import { LinkedEvent } from '../../domain/planning/linked.event';
 
 export class InMemoryEventRepository implements EventRepository {
-  private events: Array<Event> = [];
+  private events: Array<SimpleEvent> = [];
   private linkedEvents: Array<LinkedEvent> = [];
 
-  all(): Array<Event> {
+  all(): Array<SimpleEvent> {
     return this.events;
   }
 
-  async save(event: Event) {
+  async save(event: SimpleEvent) {
     this.events.push(event);
   }
 
-  async get(id: string): Promise<Event> {
-    return this.events.find((event: Event) => event.getId() === id);
+  async get(id: string): Promise<SimpleEvent> {
+    return this.events.find((event: SimpleEvent) => event.getId() === id);
   }
 
   delete(id: string) {
-    this.events = this.events.filter((event: Event) => event.getId() !== id);
+    this.events = this.events.filter(
+      (event: SimpleEvent) => event.getId() !== id,
+    );
   }
 
   async getLinkedEvent(parentId: string): Promise<LinkedEvent> {
@@ -35,6 +37,7 @@ export class InMemoryEventRepository implements EventRepository {
   }
 
   async saveLinkedEvent(event: LinkedEvent) {
+    this.deleteLinkedEvent(event.getId());
     this.linkedEvents.push(event);
   }
 }

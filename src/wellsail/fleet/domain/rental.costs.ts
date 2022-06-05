@@ -1,4 +1,4 @@
-import { RentalCostInvalid } from './exception/RentalCostInvalid';
+import { RentalCostInvalid } from './exception/rental.cost.invalid';
 
 export interface Cost {
   cost: number;

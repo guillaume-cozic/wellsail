@@ -1,4 +1,4 @@
-import { Event } from './event';
+import { SimpleEvent } from './simple.event';
 
 export class Worker {
   public static readonly INSTRUCTOR = 'INSTRUCTOR';
@@ -11,7 +11,7 @@ export class Worker {
   }
 
   isSkilled(task: string): boolean {
-    if (task === Event.INTERNSHIP) {
+    if (task === SimpleEvent.INTERNSHIP) {
       return this.isInstructor();
     }
     return true;

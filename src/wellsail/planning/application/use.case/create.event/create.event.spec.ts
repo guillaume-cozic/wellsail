@@ -1,4 +1,4 @@
-import { Event } from '../../../domain/planning/event';
+import { SimpleEvent } from '../../../domain/planning/simple.event';
 import { DateInterval } from '../../../../internship/domain/vo/date.interval';
 import { DateIntervalInvalid } from '../../../../internship/domain/exception/date.interval.invalid';
 import { CreateEvent } from './create.event';
@@ -10,7 +10,7 @@ describe('create an event', () => {
     new InMemoryEventRepository();
   const createEvent: CreateEvent = new CreateEvent(eventRepository);
   const title = 'Cours Muniez';
-  const type: string = Event.INTERNSHIP;
+  const type: string = SimpleEvent.INTERNSHIP;
   const parentId = 'parent_id';
   const instructorsIds: Array<string> = ['instructorId'];
 
@@ -29,7 +29,7 @@ describe('create an event', () => {
     const eventId = await createEvent.execute(createEventRequest);
 
     const date: DateInterval = new DateInterval(start, end);
-    const event: Event = new Event(
+    const event: SimpleEvent = new SimpleEvent(
       eventId,
       date,
       title,
@@ -38,7 +38,7 @@ describe('create an event', () => {
       parentId,
     );
 
-    const eventsSaved: Array<Event> = eventRepository.all();
+    const eventsSaved: Array<SimpleEvent> = eventRepository.all();
     expect(eventsSaved.pop()).toEqual(event);
   });
 

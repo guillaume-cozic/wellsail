@@ -1,4 +1,4 @@
-import { Event } from '../../../domain/planning/event';
+import { SimpleEvent } from '../../../domain/planning/simple.event';
 import { EventNotFound } from '../../../domain/planning/exception/event.not.found';
 import { EventRepository } from '../../../domain/planning/event.repository';
 import { AssignEventRequest } from './assign.event.request';
@@ -13,19 +13,20 @@ export class AssignEvent {
   ) {}
 
   async execute(request: AssignEventRequest) {
-    const event: Event = await this.eventRepository.get(request.getEventId());
+    const eventId = request.getEventId();
+    const event: SimpleEvent = await this.eventRepository.get(eventId);
     if (event === undefined) {
       throw new EventNotFound();
     }
 
     const workers: Array<Worker> = [];
-    request.getWorkersIds().forEach((workerId: string) => {
-      const worker: Worker = this.workerRepository.get(workerId);
+    for (const workerId of request.getWorkersIds()) {
+      const worker: Worker = await this.workerRepository.get(workerId);
       if (worker === undefined) {
         throw new WorkerNotFound();
       }
       workers.push(worker);
-    });
+    }
 
     event.assignWorkers(workers);
     this.eventRepository.save(event);

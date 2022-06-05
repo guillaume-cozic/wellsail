@@ -19,7 +19,7 @@ export class Sessions {
       );
     });
     this.checkIfNotEmpty();
-    this.checkIfNoOverlaping();
+    this.checkIfNoOverlapping();
   }
 
   cancelSession(sessionId: number) {
@@ -40,7 +40,7 @@ export class Sessions {
     });
   }
 
-  private checkIfNoOverlaping() {
+  private checkIfNoOverlapping() {
     this.sessions.forEach((currentSession: Session) => {
       this.sessions.forEach((session: Session) => {
         if (currentSession.isOverlapWith(session)) {

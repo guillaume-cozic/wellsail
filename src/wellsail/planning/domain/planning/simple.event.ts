@@ -2,7 +2,7 @@ import { DateInterval } from '../../../internship/domain/vo/date.interval';
 import { Worker } from './worker';
 import { WorkerNotSkilled } from './exception/worker.not.skilled';
 
-export class Event {
+export class SimpleEvent {
   public static INTERNSHIP = 'INTERNSHIP';
   public static PERMANENCE = 'PERMANENCE';
 
@@ -24,6 +24,7 @@ export class Event {
   }
 
   assignWorkers(workers: Array<Worker>) {
+    //this.workersId = new Array<string>();
     workers.forEach((worker: Worker) => {
       if (!worker.isSkilled(this.type)) {
         throw new WorkerNotSkilled();
