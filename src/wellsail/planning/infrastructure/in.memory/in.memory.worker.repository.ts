@@ -8,7 +8,7 @@ export class InMemoryWorkerRepository implements WorkerRepository {
     this.workers.push(worker);
   }
 
-  get(workerId: string): Worker {
+  async get(workerId: string): Promise<Worker> {
     return this.workers.find((worker) => workerId === worker.getId());
   }
 }

@@ -19,7 +19,9 @@ export class InMemoryEventRepository implements EventRepository {
   }
 
   delete(id: string) {
-    this.events = this.events.filter((event: SimpleEvent) => event.getId() !== id);
+    this.events = this.events.filter(
+      (event: SimpleEvent) => event.getId() !== id,
+    );
   }
 
   async getLinkedEvent(parentId: string): Promise<LinkedEvent> {
@@ -35,6 +37,7 @@ export class InMemoryEventRepository implements EventRepository {
   }
 
   async saveLinkedEvent(event: LinkedEvent) {
+    this.deleteLinkedEvent(event.getId());
     this.linkedEvents.push(event);
   }
 }

@@ -21,17 +21,22 @@ export class LinkedEventBuilder {
     start: number,
     end: number,
   ): LinkedEventBuilder {
-    this.events = [
-      ...this.events,
+    const workers = Object.assign([], this.workers);
+    this.events.push(
       new SimpleEvent(
         simpleEventId,
         new DateInterval(start, end),
         this.titleEvent,
-        this.workers,
+        workers,
         this.type,
         this.id,
       ),
-    ];
+    );
+    return this;
+  }
+
+  addWorkers(workers: Array<string>): LinkedEventBuilder {
+    this.workers = workers;
     return this;
   }
 

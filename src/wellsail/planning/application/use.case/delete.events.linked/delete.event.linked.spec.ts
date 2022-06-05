@@ -59,6 +59,16 @@ describe('delete an linked event', () => {
           parentEventId,
         ),
       );
+      events.push(
+        new SimpleEvent(
+          uuidv4(),
+          dateInterval,
+          'title',
+          [],
+          SimpleEvent.INTERNSHIP,
+          parentEventId,
+        ),
+      );
       const linkedEvent: LinkedEvent = new LinkedEvent(parentEventId, events);
       await eventRepository.saveLinkedEvent(linkedEvent);
     }

@@ -24,6 +24,7 @@ export class SimpleEvent {
   }
 
   assignWorkers(workers: Array<Worker>) {
+    //this.workersId = new Array<string>();
     workers.forEach((worker: Worker) => {
       if (!worker.isSkilled(this.type)) {
         throw new WorkerNotSkilled();
